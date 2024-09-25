@@ -51,8 +51,6 @@
 			background-color: #0e0e0e;
 			font-size: 1.6rem;
 			color: #c5c5c5;
-
-
 		}
 
 		footer {
@@ -74,6 +72,7 @@
 
 		.data {
 			padding-bottom: 2em;
+			white-space: nowrap;
 		}
 
 		.data thead {
@@ -121,13 +120,11 @@
 			border: 3px solid #959595;
 		}
 
-
 		.data .res-width {
 			border-left: 3px solid #959595;
 			border-right: none;
 			padding-right: 0.1em;
 			text-align: right;
-
 		}
 
 		.res-rec {
@@ -168,7 +165,6 @@
 			padding: 1em;
 			margin: 0 auto;
 			text-align: justify;
-			;
 		}
 
 		#logic {
@@ -224,10 +220,12 @@
 			z-index: -1;
 		}
 
-		#resolution-comparative {
+		#resolution-comparative,
+		#custom-sizes {
 			width: 100%;
 			overflow-x: auto;
 			margin-bottom: 2em;
+			position: relative;
 		}
 
 		#sizes {
@@ -257,9 +255,19 @@
 			width: 100%;
 		}
 
+		table {
+			position: relative;
+		}
+
 		@media (min-width: 1851px) {
 			body {
 				font-size: 1.6rem;
+			}
+		}
+
+		@media (max-width: 480px) {
+			body {
+				padding: 0.5em;
 			}
 		}
 	</style>
@@ -485,63 +493,65 @@
 			<p>No depende de mi, si no de cada desarrollador. Yo he optado por hacer media query para cada apartado de una página que lo requiera. En mi experiencia, esto se traduce en header, menú, footer y alguno que otro apartado de la página, pero el gran problema era saber como se vería en alguna resolución y acomodar el navegador me parecía un poco complejo, como digo, los navegadores tiene todo esto y tal vez más ya que también permiten el escalado de pantalla, pero no es lo mismo que probarlo en una simulación más real.</p>
 			<p>Todo esto, me lleva a decir que almenos la tabla es últil, y que tal vez todo este espacio escrito no lo sea, tampoco voy a justuficar el haberlo escrito, quería hacerlo y fué escrito. 😊</p>
 			<p>Ya que no paro... Estaría bien agregar las resoluciones inferiores a la resolución de pantalla de tu dispositivo en los disposivios emulados de las herramientas de desarrollador. Adicionalmente, hacer las divisiones está de lujo para colcoar ventanas en varios lados y trabajar con una ventana junto a la otra. Eso es muy productivo!</p>
-			<table class="data pers">
-				<thead>
-					<tr>
-						<th rowspan="2">Resolucón<br>de pantalla</th>
-						<th colspan="9">Tamaños personalizados*</th>
-					</tr>
-					<tr>
-						<th colspan="3">G. Chrome<br>(Scroll 17px)</th>
-						<th colspan="3">Firefox<br>(Scroll 0 px)</th>
-						<th colspan="3">Opera<br>(Scroll 15px)</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>HD</td>
-						<td class="res-width">1360</td>
-						<td class="by-x">X</td>
-						<td class="res-height">599</td>
-						<td class="res-width">1366</td>
-						<td class="by-x">X</td>
-						<td class="res-height">635</td>
-						<td class="res-width">1312</td>
-						<td class="by-x">X</td>
-						<td class="res-height">634</td>
-					</tr>
-					<tr>
-						<td>Full HD</td>
-						<td class="res-width">1920</td>
-						<td class="by-x">X</td>
-						<td class="res-height">911</td>
-						<td class="res-width">1920</td>
-						<td class="by-x">X</td>
-						<td class="res-height">947</td>
-						<td class="res-width">1866</td>
-						<td class="by-x">X</td>
-						<td class="res-height">946</td>
-					</tr>
-					<tr>
-						<td>Full HD (125%)</td>
-						<td class="res-width">1536</td>
-						<td class="by-x">X</td>
-						<td class="res-height">695</td>
-						<td class="res-width">1536</td>
-						<td class="by-x">X</td>
-						<td class="res-height">731</td>
-						<td class="res-width">1438</td>
-						<td class="by-x">X</td>
-						<td class="res-height">730</td>
-					</tr>
-				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="10">*Tamaños a agregar a las herramientas de desarrollador.<br>
-							Estos tamaños incluyen la barra de desplazamiento vertical.</td>
-					</tr>
-				</tfoot>
-			</table>
+			<div id="custom-sizes">
+				<table class="data pers">
+					<thead>
+						<tr>
+							<th rowspan="2">Resolucón<br>de pantalla</th>
+							<th colspan="9">Tamaños personalizados*</th>
+						</tr>
+						<tr>
+							<th colspan="3">G. Chrome<br>(Scroll 17px)</th>
+							<th colspan="3">Firefox<br>(Scroll 0 px)</th>
+							<th colspan="3">Opera<br>(Scroll 15px)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>HD</th>
+							<td class="res-width">1360</td>
+							<td class="by-x">X</td>
+							<td class="res-height">599</td>
+							<td class="res-width">1366</td>
+							<td class="by-x">X</td>
+							<td class="res-height">635</td>
+							<td class="res-width">1312</td>
+							<td class="by-x">X</td>
+							<td class="res-height">634</td>
+						</tr>
+						<tr>
+							<th>Full HD</th>
+							<td class="res-width">1920</td>
+							<td class="by-x">X</td>
+							<td class="res-height">911</td>
+							<td class="res-width">1920</td>
+							<td class="by-x">X</td>
+							<td class="res-height">947</td>
+							<td class="res-width">1866</td>
+							<td class="by-x">X</td>
+							<td class="res-height">946</td>
+						</tr>
+						<tr>
+							<th>Full HD (125%)</th>
+							<td class="res-width">1536</td>
+							<td class="by-x">X</td>
+							<td class="res-height">695</td>
+							<td class="res-width">1536</td>
+							<td class="by-x">X</td>
+							<td class="res-height">731</td>
+							<td class="res-width">1438</td>
+							<td class="by-x">X</td>
+							<td class="res-height">730</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="10">*Tamaños a agregar a las herramientas de desarrollador.<br>
+								Estos tamaños incluyen la barra de desplazamiento vertical.</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
 		</article>
 	</section>
 	<script>
