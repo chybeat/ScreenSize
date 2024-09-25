@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Tamaños de patalla</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+
+		html {
+			font-family: "Reddit Sans", sans-serif;
+			font-size: 62.5%;
+			font-optical-sizing: auto;
+			font-weight: 600;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		strong,
+		b {
+			font-weight: 800;
+
+		}
+
+		a,
+		a:visited {
+			color: #5e82c5;
+		}
+
+		a:hover {
+			color: #d39011
+		}
+
+		a:active {
+			color: #23e123;
+		}
+
+		body {
+			background-color: #0e0e0e;
+			font-size: 1.6rem;
+			color: #c5c5c5;
+
+
+		}
+
+		footer {
+			padding: 1em 1em 6em 1em;
+			text-align: center;
+		}
+
+		h1 {
+			margin: 0.8em auto;
+			text-align: center;
+		}
+
+		.data,
+		.data thead {
+			margin: 0 auto;
+			border: 3px solid #959595;
+			border-collapse: collapse;
+		}
+
+		.data {
+			padding-bottom: 2em;
+		}
+
+		.data thead {
+			background-color: #2a2a2a;
+		}
+
+		.data tbody tr:nth-child(1n) {
+			background-color: #000;
+		}
+
+		.data tbody tr:nth-child(2n) {
+			background-color: #383838;
+		}
+
+		.data tbody tr:hover {
+			background-color: #014e69;
+			color: #59ffe9;
+		}
+
+		.data td,
+		.data th {
+			padding: 0.5em 1em;
+			border: 1px solid #959595;
+		}
+
+		.data th {
+			font-size: 1.05em;
+			text-align: center
+		}
+
+		.data .by-x {
+			border-left: none;
+			border-right: none;
+			padding: 0 0.25em;
+		}
+
+		.data .res-height {
+			border-right: 3px solid #959595;
+			border-left: none;
+			padding-left: 0.1em;
+			text-align: left;
+		}
+
+		.data .nav-name {
+			border: 3px solid #959595;
+		}
+
+
+		.data .res-width {
+			border-left: 3px solid #959595;
+			border-right: none;
+			padding-right: 0.1em;
+			text-align: right;
+
+		}
+
+		.res-rec {
+			text-align: center;
+		}
+
+		.text-width {
+			max-width: 47em;
+		}
+
+		#css_rec span,
+		#nav span,
+		#screen span {
+			display: block;
+		}
+
+		#explain,
+		#gpl-license {
+			margin: 0 auto;
+		}
+
+		#explain h2,
+		#explain h3,
+		#gpl-license p,
+		#explain p {
+			margin-bottom: 1.25em;
+		}
+
+		#explain h2 {
+			text-align: center;
+		}
+
+		#explain p {
+			text-align: justify;
+		}
+
+		#gpl-license {
+			padding: 1em;
+			margin: 0 auto;
+			text-align: justify;
+			;
+		}
+
+		#logic {
+			position: relative;
+			width: 100%;
+			margin: 0 auto;
+		}
+
+		#logic h2 {
+			padding: calc(100vh + 1em) 2em 1em;
+			text-align: center;
+			width: 100%;
+		}
+
+		#logic ol {
+			margin: 1em 0 1em 1.1em;
+			padding-bottom: 1em;
+		}
+
+		#max_height,
+		#max_width {
+			display: block;
+			overflow: hidden;
+			position: absolute;
+		}
+
+		#max_height {
+			height: 999999px;
+			max-height: 100vh;
+			width: 0px;
+		}
+
+		#max_width {
+			height: 0px;
+			max-width: 100%;
+			width: 9999999999px;
+		}
+
+		#rec_box {
+			background: rgb(0, 153, 56);
+			background: -moz-linear-gradient(0deg, rgba(0, 153, 56, 1) 0%, rgba(111, 51, 173, 1) 37%, rgba(16, 32, 147, 1) 71%, rgba(0, 6, 48, 1) 100%);
+			background: -webkit-linear-gradient(0deg, rgba(0, 153, 56, 1) 0%, rgba(111, 51, 173, 1) 37%, rgba(16, 32, 147, 1) 71%, rgba(0, 6, 48, 1) 100%);
+			background: linear-gradient(0deg, rgba(0, 153, 56, 1) 0%, rgba(111, 51, 173, 1) 37%, rgba(16, 32, 147, 1) 71%, rgba(0, 6, 48, 1) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#009938", endColorstr="#000630", GradientType=1);
+			border: dashed 1px red;
+			bottom: 0;
+			left: 0;
+			margin: 0 auto;
+			padding: 1em;
+			position: absolute;
+			right: 0;
+			top: 0;
+			z-index: -1;
+		}
+
+		#resolution-comparative {
+			width: 100%;
+			overflow-x: auto;
+			margin-bottom: 2em;
+		}
+
+		#sizes {
+			font-size: 1.25em;
+			bottom: 1em;
+			color: #2a2a2a;
+			background-color: #8f8f8f;
+			height: fit-content;
+			margin: 0 auto;
+			padding: 1em;
+			position: sticky;
+			top: 1em;
+			width: fit-content;
+		}
+
+		#sizes h2 {
+			margin-bottom: 0;
+		}
+
+		#sizes p {
+			margin-top: 0;
+		}
+
+		#table-title {
+			margin: 1.25em 0;
+			text-align: center;
+			width: 100%;
+		}
+
+		@media (min-width: 1851px) {
+			body {
+				font-size: 1.6rem;
+			}
+		}
+	</style>
+</head>
+
+<body id="top" onresize="run_sizes()">
+	<div id="max_width"></div>
+	<div id="max_height"></div>
+	<section id="rec_box">
+		<div id="sizes">
+			<header>
+				<h1>Medidas de la pantalla del navegador</h1>
+			</header>
+			<h3>Info de la pantalla</h3>
+			<p id="screen">
+				<span class="width">Cargando...</span>
+				<span class="height">Cargando...</span>
+			</p>
+			<h3>Info del navegador</h3>
+			<p id="nav">
+				<span class="width">Cargando...</span>
+				<span class="height">Cargando...</span>
+			</p>
+			<h3>Max. ancho para contenido</h3>
+			<p id="css_rec">
+				<span class="width">Cargando...</span>
+				<span class="height">Cargando...</span>
+			</p>
+		</div>
+	</section>
+	<section id="info">
+		<div id="logic" class="text-width">
+			<h2>DATOS A TENER EN CUENTA</h2>
+			<ol>
+				<li>El anterior cuadro de colores es el tamaño máximo recomendado de uso para el tamaño de ventana actual del navegador.</li>
+				<li>La "info de pantalla" es la del monitor principal donde se ejecuta el navegador. En multiples pantallas con resoluciones distintas cambia a donde se toma como la pantalla donde está el navegador.</li>
+				<li>"Max. ancho para contenido" es el espacio mínimo a usar para su diposición en la ventana. Esta lista fué hecha con la intención para que se viera junto al borde de la página dando un ejemplo de como <strong>NO</strong> se debe hacer. Se debe dejar un espacio entre el borde de la ventana y el contenido de la página mínimo de 1em.</li>
+				<li>El ancho en "info del navegador" corresponde al ancho disponible visual (viewport) del navegador. Las barras de desplazamiento o la barra lateral de Opera disminuyen la cantidad de pixeles para contenido.</li>
+			</ol>
+		</div>
+		<div id="resolution-comparative">
+			<h2 id="table-title"><strong>MEDIDAS Y RESOLUCIONES</strong></h2>
+			<table class="data sizes">
+				<thead>
+					<tr>
+						<th rowspan="2">Resolucón<br>de pantalla</th>
+						<th rowspan="2">Ancho</th>
+						<th rowspan="2">Alto</th>
+						<th rowspan="2">Escala<sup>1</sup></th>
+						<th colspan="9">Viewport (espacio disponible)</th>
+						<th rowspan="2">Espacio<br>Mínimo</th>
+						<th rowspan="2">PowerToys<br>FancyZones<sup>5</sup></th>
+					</tr>
+					<tr>
+						<th class="nav-name" colspan="3">G. Chrome<sup>2</sup></th>
+						<th class="nav-name" colspan="3">Firefox<sup>3</sup></th>
+						<th class="nav-name" colspan="3">Opera<sup>4</sup></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>HD</td>
+						<td>1366</td>
+						<td>768</td>
+						<td>Sin Escala</td>
+						<td class="res-width">1343</td>
+						<td class="by-x">X</td>
+						<td class="res-height">599</td>
+						<td class="res-width">1366</td>
+						<td class="by-x">X</td>
+						<td class="res-height">635</td>
+						<td class="res-width">1297</td>
+						<td class="by-x">X</td>
+						<td class="res-height">634</td>
+						<td class="res-rec">1291 X 599</td>
+						<td class="res-rec relevant">1363 X 722</td>
+					</tr>
+					<tr>
+						<td>Full HD</td>
+						<td>1920</td>
+						<td>1080</td>
+						<td>Sin Escala</td>
+						<td class="res-width">1903</td>
+						<td class="by-x">X</td>
+						<td class="res-height">911</td>
+						<td class="res-width">1920</td>
+						<td class="by-x">X</td>
+						<td class="res-height">947</td>
+						<td class="res-width">1851</td>
+						<td class="by-x">X</td>
+						<td class="res-height">946</td>
+						<td class="res-rec">1851 X 911</td>
+						<td class="res-rec relevant">1922 X 1034</td>
+
+					</tr>
+					<tr>
+						<td>Full HD (125%)</td>
+						<td>1536</td>
+						<td>864</td>
+						<td>Escala de 125%</td>
+						<td class="res-width">1519</td>
+						<td class="by-x">X</td>
+						<td class="res-height">695</td>
+						<td class="res-width">1536</td>
+						<td class="by-x">X</td>
+						<td class="res-height">731</td>
+						<td class="res-width">1468</td>
+						<td class="by-x">X</td>
+						<td class="res-height">730</td>
+						<td class="res-rec">1468 X 695</td>
+						<td class="res-rec relevant">1538 X 819</td>
+					</tr>
+					<tr>
+						<td>Full HD (150%)</td>
+						<td>1280</td>
+						<td>720</td>
+						<td>Escala de 150%</td>
+						<td class="res-width">1263</td>
+						<td class="by-x">X</td>
+						<td class="res-height">551</td>
+						<td class="res-width">1280</td>
+						<td class="by-x">X</td>
+						<td class="res-height">587</td>
+						<td class="res-width">1211</td>
+						<td class="by-x">X</td>
+						<td class="res-height">585</td>
+						<td class="res-rec">1211 X 551</td>
+						<td class="res-rec">1282 X 974</td>
+					</tr>
+					<tr>
+						<td>2k (100%)</td>
+						<td>2560</td>
+						<td>1440</td>
+						<td>Sin Escala</td>
+						<td class="res-width">2543</td>
+						<td class="by-x">X</td>
+						<td class="res-height">1271</td>
+						<td class="res-width">2560</td>
+						<td class="by-x">X</td>
+						<td class="res-height">1307</td>
+						<td class="res-width">2491</td>
+						<td class="by-x">X</td>
+						<td class="res-height">1305</td>
+						<td class="res-rec">2491 X 1271</td>
+						<td class="res-rec">n/a</td>
+					</tr>
+					<tr>
+						<td>2k (125%)</td>
+						<td>2048</td>
+						<td>1152</td>
+						<td>Escala de 125%</td>
+						<td class="res-width">2031</td>
+						<td class="by-x">X</td>
+						<td class="res-height">983</td>
+						<td class="res-width">2048</td>
+						<td class="by-x">X</td>
+						<td class="res-height">1019</td>
+						<td class="res-width">1980</td>
+						<td class="by-x">X</td>
+						<td class="res-height">1018</td>
+						<td class="res-rec">1980 X 983</td>
+						<td class="res-rec">2050 X 1106</td>
+					</tr>
+					<tr>
+						<td>2k (150%)</td>
+						<td>1707</td>
+						<td>960</td>
+						<td>Escala de 150%</td>
+						<td class="res-width">1691</td>
+						<td class="by-x">X</td>
+						<td class="res-height">825</td>
+						<td class="res-width">1709</td>
+						<td class="by-x">X</td>
+						<td class="res-height">830</td>
+						<td class="res-width">1639</td>
+						<td class="by-x">X</td>
+						<td class="res-height">826</td>
+						<td class="res-rec">1639 X 825</td>
+						<td class="res-rec">1710 X 948</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="16">
+							* Todos los tamaños están en pixeles.<br>
+							1. Escala de pantalla en Windows.<br>
+							2. Google Chome con la barra de favoritos visible.<br>
+							3. Mozilla Firefox en versiones recientes no muestra la barra de desplazamiento.<br>
+							4. Opera con la barra lateral visible.<br>
+							5. Tamaño en pixeles de separaciones para simular resoluciones de pantalla más pequeñas en FancyZones de PowerToys.
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</section>
+	<section>
+		<article id="explain" class="text-width">
+			<h2>¿Porqué esto?</h2>
+			<p>Desarrollar páginas web que se puedan visualizar correctamente en cualquier dipositivo es necesario para transmitir un mensaje claro y atraer visitantes o clientes.</p>
+			<p>No obstante, al parecer, la mayoría de desarroladores se centran en hacer páginas para desktop y móviles con la premisa que resoluciones mayores a 1024px o 1200px de ancho se toma como computadores y el resto son móviles, y en teoria si es cierto, pero enfática y precisamente la cosa es muy disinta.</p>
+
+			<h3>La verdad sobre las resoluciones de pantalla</h3>
+			<p>Todas las resoluciones de pantalla (llámese ancho x alto) se acomodan al tamaño del dipositivo o las capacidades visuales del usuario, solo que al escribir media querys (@media screen...) los tamaños precisos son demasiado importantes, sobre todo en los menú de navegación o apartados con varias cajas consecutivas laterales como los productos de una tienda, pero siempre se lleva a que si pasa un umbral específico de pixeles se convierta toda la página a un tipo de dipositivo u otro.</p>
+			<p>Los navegadores han hecho hoy en día un trabajo excelente colocando algunas resoluciones de pantalla para móviles desde las herramientas de desarrollo, pero se han olvidado un poco del computador de escritorio, y ni hablar que cualquier página web hoy en día pierde demasiado espacio (sobretodo en las que se usan platillas usando CMS). Ese "espacio perdido" hace que la visualización de una página en distintos dispositivos sea <strong>MUY</strong> importante para una visualización correcta, asertiva y no se obligue al visitante a intentar encontrar un modo para visualizar un mensaje.</p>
+
+			<h3>Bien por el problema, ¿hay solución?</h3>
+			<p>La respuesta correcta es no, pero se puede minimizar el impacto. Si se toma cualquier plantilla hay que escribir mucho código CSS, si se desarrolla desde cero una página, hay que escribir mucho más código CSS.</p>
+			<p>Después de haber agrandado el problema, una posible solución es probar en distintas resoluciones de pantalla (o distintos dispositivos) lo que se está desarrollando, y allí es donde encontré una solución, por lo menos para escritorio (lo que no hay).</p>
+			<p>Si desde el navegador en el área de tamaños de pantalla queremos utilizar una resolución de escritorio, todo se va a ver perfecto a esa resolución (Ejemplo: 1336x768 ó HD) pero resulta que hay 2 cosas que se deben tener en cuenta a esta resolución</p>
+			<p>1. 1366 X 768 no es la resolución o espacio disponible (viewport) que me dá un navegador, como se vé en la tabla anterior</p>
+			<p>2. En 1920 X 1080 o FullHD puede no ser la resolución final, ya que para que se vea más claro (mas grande) Windows utiliza un escalamiento en casi cualquier pantalla de hasta 19 pulgadas (esto cubre la gran mayoria de portátiles).</p>
+
+			<h3>¿Y entonces esa tabla que me dice?</h3>
+			<p>Solo dice cuales son los espacios en pixeles que algunos navegadores tienen disponible (viewport) y da un tamaño de pantalla para Powertoys.</p>
+			<p>Powertoys es una aplicación para Windows que tiene varias herramientas que ayudan y facilitan el uso de windows y una de ellas se llama Fancy Zone, allí es posible configurar divisiones en pixeles en la pantalla y poder arrastrar una ventana y colocarla en alguna de esas divisiones.</p>
+
+			<h3>¿FancyZones de Powertoys cómo ayuda?</h3>
+			<p>Al dividir la pantalla se puede simular el espacio que un navegador tiene disponible en cada resolución o escalamiento (agrandamiento). Esto permite que al arrastrar el navegador a una division, tome el aspecto en resoluciones inferiores a la de la pantalla donde se desarrolla y se puedan emular las vistas (2k ó 2560 x 1440p es lo míminmo que recomiendo para desarrollo front-end).</p>
+			<p>Es mucho más facil que ir a las barras del navegador y activar la resolucón de algunos dispositivos, simplemente se presiona y manteniene <kbd>SHIFT</kbd> y se arrastra la ventana al tamaño o resolución donde se quiere probar.</p>
+
+			<h3>¿Alguna conclusión?</h3>
+			<p>No depende de mi, si no de cada desarrollador. Yo he optado por hacer media query para cada apartado de una página que lo requiera. En mi experiencia, esto se traduce en header, menú, footer y alguno que otro apartado de la página, pero el gran problema era saber como se vería en alguna resolución y acomodar el navegador me parecía un poco complejo, como digo, los navegadores tiene todo esto y tal vez más ya que también permiten el escalado de pantalla, pero no es lo mismo que probarlo en una simulación más real.</p>
+			<p>Todo esto, me lleva a decir que almenos la tabla es últil, y que tal vez todo este espacio escrito no lo sea, tampoco voy a justuficar el haberlo escrito, quería hacerlo y fué escrito. 😊</p>
+			<p>Ya que no paro... Estaría bien agregar las resoluciones inferiores a la resolución de pantalla de tu dispositivo en los disposivios emulados de las herramientas de desarrollador. Adicionalmente, hacer las divisiones está de lujo para colcoar ventanas en varios lados y trabajar con una ventana junto a la otra. Eso es muy productivo!</p>
+			<table class="data pers">
+				<thead>
+					<tr>
+						<th rowspan="2">Resolucón<br>de pantalla</th>
+						<th colspan="9">Tamaños personalizados*</th>
+					</tr>
+					<tr>
+						<th colspan="3">G. Chrome<br>(Scroll 17px)</th>
+						<th colspan="3">Firefox<br>(Scroll 0 px)</th>
+						<th colspan="3">Opera<br>(Scroll 15px)</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>HD</td>
+						<td class="res-width">1360</td>
+						<td class="by-x">X</td>
+						<td class="res-height">599</td>
+						<td class="res-width">1366</td>
+						<td class="by-x">X</td>
+						<td class="res-height">635</td>
+						<td class="res-width">1312</td>
+						<td class="by-x">X</td>
+						<td class="res-height">634</td>
+					</tr>
+					<tr>
+						<td>Full HD</td>
+						<td class="res-width">1920</td>
+						<td class="by-x">X</td>
+						<td class="res-height">911</td>
+						<td class="res-width">1920</td>
+						<td class="by-x">X</td>
+						<td class="res-height">947</td>
+						<td class="res-width">1866</td>
+						<td class="by-x">X</td>
+						<td class="res-height">946</td>
+					</tr>
+					<tr>
+						<td>Full HD (125%)</td>
+						<td class="res-width">1536</td>
+						<td class="by-x">X</td>
+						<td class="res-height">695</td>
+						<td class="res-width">1536</td>
+						<td class="by-x">X</td>
+						<td class="res-height">731</td>
+						<td class="res-width">1438</td>
+						<td class="by-x">X</td>
+						<td class="res-height">730</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="10">*Tamaños a agregar a las herramientas de desarrollador.<br>
+							Estos tamaños incluyen la barra de desplazamiento vertical.</td>
+					</tr>
+				</tfoot>
+			</table>
+		</article>
+	</section>
+	<script>
+		function set_sizes(dest, width, height) {
+			let p_dest = document.getElementById(dest);
+			let p_dest_width = p_dest.getElementsByClassName('width');
+			let p_dest_height = p_dest.getElementsByClassName('height');
+			p_dest_width[0].innerHTML = "<strong>Ancho:</strong> " + width + "px";
+			p_dest_height[0].innerHTML = '<strong>Alto:</strong> ' + height + 'px';
+		}
+
+		function run_sizes() {
+			let div_max_width = document.getElementById("max_width");
+			let div_max_height = document.getElementById("max_height");
+			let font_size = Math.ceil(parseFloat(window.getComputedStyle(document.getElementsByTagName('body')[0], null).getPropertyValue('font-size')));
+			let max_width = "width: " + (div_max_width.clientWidth - (font_size * 2)) + "px";
+			set_sizes('screen', window.screen.width, window.screen.height);
+			set_sizes('nav', div_max_width.clientWidth, div_max_height.clientHeight);
+			set_sizes('css_rec', div_max_width.clientWidth - (font_size * 2), div_max_height.clientHeight);
+			rec_box.style = max_width;
+		}
+
+
+		const body = document.querySelector("body");
+		const rec_box = document.getElementById("rec_box")
+
+		window.addEventListener('load', function () {
+			run_sizes()
+		}, false);
+
+		function download(filename, text) {
+			let element = document.createElement('a');
+			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+			element.setAttribute('download', filename);
+
+			element.style.display = 'none';
+			document.body.appendChild(element);
+
+			element.click();
+
+			document.body.removeChild(element);
+		}
+	</script>
+	<footer>
+		<p>Creado por ChyBeat &copy; 2024. GNU-GPL License</p>
+		<div id="gpl-license" class="text-width">
+			<p>This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+			</p>
+			<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+			<p>You should have received a copy of the GNU General Public License along with this program. If not, see
+				&lt;<a href="https://www.gnu.org/licenses/" target="_blank" rel="noopener noreferrer">https://www.gnu.org/licenses/</a>&gt; .</p>
+		</div>
+	</footer>
+	</div>
+</body>
+
+</html>
