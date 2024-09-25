@@ -2,9 +2,25 @@
 <html lang="es">
 
 <head>
+	<script>
+		/* VERY IMPORTANT COMMENT! on function run_sizes()*/
+		/* VERY IMPORTANT COMMENT! on function run_sizes()*/
+		/* VERY IMPORTANT COMMENT! on function run_sizes()*/
+		/* VERY IMPORTANT COMMENT! on function run_sizes()*/
+		/* VERY IMPORTANT COMMENT! on function run_sizes()*/
+		/* VERY IMPORTANT COMMENT! on function run_sizes()*/
+		/* VERY IMPORTANT COMMENT! on function run_sizes()*/
+		/* VERY IMPORTANT COMMENT! on function run_sizes()*/
+		/* VERY IMPORTANT COMMENT! on function run_sizes()*/
+		/* VERY IMPORTANT COMMENT! on function run_sizes()*/
+		/* VERY IMPORTANT COMMENT! on function run_sizes()*/
+		/* VERY IMPORTANT COMMENT! on function run_sizes()*/
+		/* VERY IMPORTANT COMMENT! on function run_sizes()*/
+	</script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Tamaños de patalla</title>
+	<meta name="theme-color" content="#4285f4" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
@@ -174,7 +190,7 @@
 		}
 
 		#logic h2 {
-			padding: calc(100vh + 1em) 2em 1em;
+			padding: calc(100dvh + 1em) 2em 1em;
 			text-align: center;
 			width: 100%;
 		}
@@ -249,6 +265,19 @@
 			margin-top: 0;
 		}
 
+		#sizes .width {
+			text-align: right;
+		}
+
+		#sizes .by {
+			text-align: center;
+			width: 1.5em;
+		}
+
+		#sizes .width {
+			text-align: right;
+		}
+
 		#table-title {
 			margin: 1.25em 0;
 			text-align: center;
@@ -277,26 +306,52 @@
 	<div id="max_width"></div>
 	<div id="max_height"></div>
 	<section id="rec_box">
-		<div id="sizes">
-			<header>
-				<h1>Medidas de la pantalla del navegador</h1>
-			</header>
-			<h3>Info de la pantalla</h3>
-			<p id="screen">
-				<span class="width">Cargando...</span>
-				<span class="height">Cargando...</span>
-			</p>
-			<h3>Info del navegador</h3>
-			<p id="nav">
-				<span class="width">Cargando...</span>
-				<span class="height">Cargando...</span>
-			</p>
-			<h3>Max. ancho para contenido</h3>
-			<p id="css_rec">
-				<span class="width">Cargando...</span>
-				<span class="height">Cargando...</span>
-			</p>
-		</div>
+		<table id="sizes">
+			<thead>
+				<tr>
+					<th colspan="3">
+						<h1>Medidas de la pantalla del navegador</h1>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th class="width">Ancho</th>
+					<th>&nbsp</th>
+					<th class="height">Alto</th>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<p>Info de la pantalla</p>
+					</td>
+				</tr>
+				<tr id="screen">
+					<td><span class="width">Cargando...</span></td>
+					<td class="by">X</td>
+					<td><span class="height">Cargando...</span></td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<p>Info del navegador</p>
+					</td>
+				</tr>
+				<tr id="nav">
+					<td><span class="width">Cargando...</span></td>
+					<td class="by">X</td>
+					<td><span class="height">Cargando...</span></td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<p>Max. ancho para contenido</p>
+					</td>
+				</tr>
+				<tr id="css_rec">
+					<td><span class="width">Cargando...</span></td>
+					<td class="by">X</td>
+					<td><span class="height">Cargando...</span></td>
+				</tr>
+			</tbody>
+		</table>
 	</section>
 	<section id="info">
 		<div id="logic" class="text-width">
@@ -559,41 +614,51 @@
 			let p_dest = document.getElementById(dest);
 			let p_dest_width = p_dest.getElementsByClassName('width');
 			let p_dest_height = p_dest.getElementsByClassName('height');
-			p_dest_width[0].innerHTML = "<strong>Ancho:</strong> " + width + "px";
-			p_dest_height[0].innerHTML = '<strong>Alto:</strong> ' + height + 'px';
+			animate(p_dest_width[0], width);
+			animate(p_dest_height[0], height);
+			p_dest_width[0].innerHTML = width + "px";
+			p_dest_height[0].innerHTML = height + 'px';
+		}
+
+		function animate(lastElement, newVal) {
+			const regex = /[^0-9]/gm
+			if (parseInt(lastElement.innerHTML.replace(regex, '')) != parseInt(newVal)) {
+				const animation = [
+					{ color: '#000' },
+					{ backgroundColor: "#5e68f5" },
+				];
+				const time = {
+					duration: 250,
+					iterations: 4,
+				};
+				lastElement.animate(animation, time);
+			}
 		}
 
 		function run_sizes() {
-			let div_max_width = document.getElementById("max_width");
-			let div_max_height = document.getElementById("max_height");
-			let font_size = Math.ceil(parseFloat(window.getComputedStyle(document.getElementsByTagName('body')[0], null).getPropertyValue('font-size')));
-			let max_width = "width: " + (div_max_width.clientWidth - (font_size * 2)) + "px";
+			const div_max_width = document.getElementById("max_width");
+			const div_max_height = document.getElementById("max_height");
+			const font_size = Math.ceil(parseFloat(window.getComputedStyle(document.getElementsByTagName('body')[0], null).getPropertyValue('font-size')));
+			const max_width = "width: " + (div_max_width.clientWidth - (font_size * 2)) + "px";
+			const max_height = "height: " + (div_max_height.clientHeight) + "px";
 			set_sizes('screen', window.screen.width, window.screen.height);
 			set_sizes('nav', div_max_width.clientWidth, div_max_height.clientHeight);
 			set_sizes('css_rec', div_max_width.clientWidth - (font_size * 2), div_max_height.clientHeight);
 			rec_box.style = max_width;
+			/* I commented next lines to talk about error on "Datos a tener en cuenta" titleo
+				on mobile view and the padding top
+
+				The error happens because the colored box is not updated when the dynamic height or width occurs,
+				Just the width is updated.
+				To show what happens may be (or not) I will setup a button, switch or wathever thing like that. 
+				For now is only a commented line */
+			// rec_box.style = max_width + ";" + max_height;
 		}
-
-
-		const body = document.querySelector("body");
-		const rec_box = document.getElementById("rec_box")
 
 		window.addEventListener('load', function () {
 			run_sizes()
 		}, false);
 
-		function download(filename, text) {
-			let element = document.createElement('a');
-			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-			element.setAttribute('download', filename);
-
-			element.style.display = 'none';
-			document.body.appendChild(element);
-
-			element.click();
-
-			document.body.removeChild(element);
-		}
 	</script>
 	<footer>
 		<p>Creado por ChyBeat &copy; 2024. GNU-GPL License</p>
