@@ -96,16 +96,16 @@
 		}
 
 		.data tbody tr:nth-child(1n) {
-			background-color: #000;
+			background-color: #141414;
 		}
 
 		.data tbody tr:nth-child(2n) {
-			background-color: #383838;
+			background-color: #464646;
 		}
 
 		.data tbody tr:hover {
 			background-color: #014e69;
-			color: #59ffe9;
+			color: #59bdff;
 		}
 
 		.data td,
@@ -169,6 +169,12 @@
 			margin-bottom: 1.25em;
 		}
 
+		#explain h2,
+		#explain h3 {
+			margin-top: 2.5em;
+		}
+
+
 		#explain h2 {
 			text-align: center;
 		}
@@ -220,12 +226,12 @@
 		}
 
 		#rec_box {
-			background: rgb(0, 153, 56);
-			background: -moz-linear-gradient(0deg, rgba(0, 153, 56, 1) 0%, rgba(111, 51, 173, 1) 37%, rgba(16, 32, 147, 1) 71%, rgba(0, 6, 48, 1) 100%);
-			background: -webkit-linear-gradient(0deg, rgba(0, 153, 56, 1) 0%, rgba(111, 51, 173, 1) 37%, rgba(16, 32, 147, 1) 71%, rgba(0, 6, 48, 1) 100%);
-			background: linear-gradient(0deg, rgba(0, 153, 56, 1) 0%, rgba(111, 51, 173, 1) 37%, rgba(16, 32, 147, 1) 71%, rgba(0, 6, 48, 1) 100%);
-			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#009938", endColorstr="#000630", GradientType=1);
-			border: dashed 1px red;
+			background: rgb(7 71 141);
+			background: -moz-linear-gradient(180deg, rgb(18 144 151) 0%, rgb(7 71 141) 50%, rgb(4 31 60) 100%);
+			background: -webkit-linear-gradient(180deg, rgb(18 144 151) 0%, rgb(7 71 141) 50%, rgb(4 31 60) 100%);
+			background: linear-gradient(180deg, rgb(18 144 151) 0%, rgb(7 71 141) 50%, rgb(4 31 60) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#07478d", endColorstr="#041f3c", GradientType=1);
+			border: dashed 1px #FFF;
 			bottom: 0;
 			left: 0;
 			margin: 0 auto;
@@ -242,6 +248,11 @@
 			overflow-x: auto;
 			margin-bottom: 2em;
 			position: relative;
+		}
+
+		#resolution-comparative td:nth-child(2) {
+			text-align: center;
+
 		}
 
 		#sizes {
@@ -274,8 +285,28 @@
 			width: 1.5em;
 		}
 
-		#sizes .width {
-			text-align: right;
+		#sizes #screen-dpr {
+			text-align: center;
+		}
+
+		#sizes tr:not(#screen-dpr) td[colspan="3"] {
+			padding-top: 1em;
+			font-size: 0.75em;
+		}
+
+		#sizes tr td:first-child:not([colspan="3"]) {
+			width: 45%
+		}
+
+		#sizes tr th:nth-child(2),
+		#sizes tr td:nth-child(2) {
+			width: 10%;
+		}
+
+		#sizes tr th:nth-child(3),
+		#sizes tr td:nth-child(3) {
+			width: 45%;
+			text-align: left;
 		}
 
 		#table-title {
@@ -310,19 +341,19 @@
 			<thead>
 				<tr>
 					<th colspan="3">
-						<h1>Medidas de la pantalla del navegador</h1>
+						<h1>Medidas de la pantalla y el navegador</h1>
 					</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<th class="width">Ancho</th>
-					<th>&nbsp</th>
+					<th class="by">X</th>
 					<th class="height">Alto</th>
 				</tr>
 				<tr>
 					<td colspan="3">
-						<p>Info de la pantalla</p>
+						<p>Tamaño de pantalla</p>
 					</td>
 				</tr>
 				<tr id="screen">
@@ -332,7 +363,7 @@
 				</tr>
 				<tr>
 					<td colspan="3">
-						<p>Info del navegador</p>
+						<p>Tamaño de navegador</p>
 					</td>
 				</tr>
 				<tr id="nav">
@@ -342,13 +373,21 @@
 				</tr>
 				<tr>
 					<td colspan="3">
-						<p>Max. ancho para contenido</p>
+						<p>Tamaño sugerido de contenido</p>
 					</td>
 				</tr>
 				<tr id="css_rec">
 					<td><span class="width">Cargando...</span></td>
 					<td class="by">X</td>
 					<td><span class="height">Cargando...</span></td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<p>Device Pixel Ratio</p>
+					</td>
+				</tr>
+				<tr id="screen-dpr">
+					<td colspan="3"><strong>DPR: </strong><span class="size"></span> ddpx</td>
 				</tr>
 			</tbody>
 		</table>
@@ -358,9 +397,9 @@
 			<h2>DATOS A TENER EN CUENTA</h2>
 			<ol>
 				<li>El anterior cuadro de colores es el tamaño máximo recomendado de uso para el tamaño de ventana actual del navegador.</li>
-				<li>La "info de pantalla" es la del monitor principal donde se ejecuta el navegador. En multiples pantallas con resoluciones distintas cambia a donde se toma como la pantalla donde está el navegador.</li>
-				<li>"Max. ancho para contenido" es el espacio mínimo a usar para su diposición en la ventana. Esta lista fué hecha con la intención para que se viera junto al borde de la página dando un ejemplo de como <strong>NO</strong> se debe hacer. Se debe dejar un espacio entre el borde de la ventana y el contenido de la página mínimo de 1em.</li>
-				<li>El ancho en "info del navegador" corresponde al ancho disponible visual (viewport) del navegador. Las barras de desplazamiento o la barra lateral de Opera disminuyen la cantidad de pixeles para contenido.</li>
+				<li>"Tamaño de pantalla" es la del monitor principal o la pantalla donde se ejecuta el navegador. En dispositivos con multiples pantallas y resoluciones distintas cambia el tamaño a la pantalla donde está el navegador.</li>
+				<li>"Tamaño sugerido de contenido" es el espacio recomendado para el contenido de una página web. Se recomienda dejar un espacio entre el borde de la ventana y el contenido de la página mínimo de 1em (16px para este ejemplo).</li>
+				<li>"Tamaño del navegador" corresponde al ancho disponible visual (viewport) del navegador. Las barras de desplazamiento o la barra lateral de Opera en computadores de escritorio disminuyen la cantidad de pixeles para contenido.</li>
 			</ol>
 		</div>
 		<div id="resolution-comparative">
@@ -369,8 +408,7 @@
 				<thead>
 					<tr>
 						<th rowspan="2">Resolucón<br>de pantalla</th>
-						<th rowspan="2">Ancho</th>
-						<th rowspan="2">Alto</th>
+						<th rowspan="2">Ancho X Alto</th>
 						<th rowspan="2">Escala<sup>1</sup></th>
 						<th colspan="9">Viewport (espacio disponible)</th>
 						<th rowspan="2">Espacio<br>Mínimo</th>
@@ -385,9 +423,8 @@
 				<tbody>
 					<tr>
 						<td>HD</td>
-						<td>1366</td>
-						<td>768</td>
-						<td>Sin Escala</td>
+						<td>1366 X 768</td>
+						<td>100%</td>
 						<td class="res-width">1343</td>
 						<td class="by-x">X</td>
 						<td class="res-height">599</td>
@@ -402,9 +439,8 @@
 					</tr>
 					<tr>
 						<td>Full HD</td>
-						<td>1920</td>
-						<td>1080</td>
-						<td>Sin Escala</td>
+						<td>1920 X 1080</td>
+						<td>100%</td>
 						<td class="res-width">1903</td>
 						<td class="by-x">X</td>
 						<td class="res-height">911</td>
@@ -420,9 +456,8 @@
 					</tr>
 					<tr>
 						<td>Full HD (125%)</td>
-						<td>1536</td>
-						<td>864</td>
-						<td>Escala de 125%</td>
+						<td>1536 X 864</td>
+						<td>125%</td>
 						<td class="res-width">1519</td>
 						<td class="by-x">X</td>
 						<td class="res-height">695</td>
@@ -437,9 +472,8 @@
 					</tr>
 					<tr>
 						<td>Full HD (150%)</td>
-						<td>1280</td>
-						<td>720</td>
-						<td>Escala de 150%</td>
+						<td>1280 X 720</td>
+						<td>150%</td>
 						<td class="res-width">1263</td>
 						<td class="by-x">X</td>
 						<td class="res-height">551</td>
@@ -454,9 +488,8 @@
 					</tr>
 					<tr>
 						<td>2k (100%)</td>
-						<td>2560</td>
-						<td>1440</td>
-						<td>Sin Escala</td>
+						<td>2560 X 1440</td>
+						<td>100%</td>
 						<td class="res-width">2543</td>
 						<td class="by-x">X</td>
 						<td class="res-height">1271</td>
@@ -471,9 +504,8 @@
 					</tr>
 					<tr>
 						<td>2k (125%)</td>
-						<td>2048</td>
-						<td>1152</td>
-						<td>Escala de 125%</td>
+						<td>2048 X 1152</td>
+						<td>125%</td>
 						<td class="res-width">2031</td>
 						<td class="by-x">X</td>
 						<td class="res-height">983</td>
@@ -488,9 +520,8 @@
 					</tr>
 					<tr>
 						<td>2k (150%)</td>
-						<td>1707</td>
-						<td>960</td>
-						<td>Escala de 150%</td>
+						<td>1707 X 960</td>
+						<td>150%</td>
 						<td class="res-width">1691</td>
 						<td class="by-x">X</td>
 						<td class="res-height">825</td>
@@ -509,10 +540,10 @@
 						<td colspan="16">
 							* Todos los tamaños están en pixeles.<br>
 							1. Escala de pantalla en Windows.<br>
-							2. Google Chome con la barra de favoritos visible.<br>
-							3. Mozilla Firefox en versiones recientes no muestra la barra de desplazamiento.<br>
-							4. Opera con la barra lateral visible.<br>
-							5. Tamaño en pixeles de separaciones para simular resoluciones de pantalla más pequeñas en FancyZones de PowerToys.
+							2. En Google Chome se calcula el tamaño diposible para el navegador con la barra de favoritos visible.<br>
+							3. Mozilla Firefox en versiones recientes no muestra la barra de desplazamiento vertical. Se calculó con una versión reciente<br>
+							4. En Opera se calcula con la barra lateral izquierda visible.<br>
+							5. Tamaño de separaciones (zones) en pixeles que se pueden dejar para simular resoluciones de pantalla con escalamiento.
 						</td>
 					</tr>
 				</tfoot>
@@ -522,32 +553,35 @@
 	<section>
 		<article id="explain" class="text-width">
 			<h2>¿Porqué esto?</h2>
-			<p>Desarrollar páginas web que se puedan visualizar correctamente en cualquier dipositivo es necesario para transmitir un mensaje claro y atraer visitantes o clientes.</p>
-			<p>No obstante, al parecer, la mayoría de desarroladores se centran en hacer páginas para desktop y móviles con la premisa que resoluciones mayores a 1024px o 1200px de ancho se toma como computadores y el resto son móviles, y en teoria si es cierto, pero enfática y precisamente la cosa es muy disinta.</p>
+			<p>Diseñar páginas web que se puedan visualizar correctamente en cualquier dipositivo es necesario para transmitir un mensaje claro y atraer visitantes o clientes.</p>
+			<p>No obstante, al parecer, la mayoría de desarroladores y/o diseñadores se centran en hacer páginas para todos los dispositivos con la premisa que resoluciones mayores a 1024px o 1200px de ancho se toma como computadores y el resto son móviles, y en teoria si es cierto, pero enfática y precisamente la cosa es muy disinta.</p>
 
 			<h3>La verdad sobre las resoluciones de pantalla</h3>
-			<p>Todas las resoluciones de pantalla (llámese ancho x alto) se acomodan al tamaño del dipositivo o las capacidades visuales del usuario, solo que al escribir media querys (@media screen...) los tamaños precisos son demasiado importantes, sobre todo en los menú de navegación o apartados con varias cajas consecutivas laterales como los productos de una tienda, pero siempre se lleva a que si pasa un umbral específico de pixeles se convierta toda la página a un tipo de dipositivo u otro.</p>
-			<p>Los navegadores han hecho hoy en día un trabajo excelente colocando algunas resoluciones de pantalla para móviles desde las herramientas de desarrollo, pero se han olvidado un poco del computador de escritorio, y ni hablar que cualquier página web hoy en día pierde demasiado espacio (sobretodo en las que se usan platillas usando CMS). Ese "espacio perdido" hace que la visualización de una página en distintos dispositivos sea <strong>MUY</strong> importante para una visualización correcta, asertiva y no se obligue al visitante a intentar encontrar un modo para visualizar un mensaje.</p>
+			<p>Todas las resoluciones de pantalla (hablando de ancho x alto) se acomodan al tamaño del dipositivo o las capacidades visuales del usuario, solo que al escribir media querys (@media screen...) los tamaños precisos son demasiado importantes, sobre todo en los menú de navegación o apartados con varias cajas consecutivas laterales como los productos de una tienda, pero siempre se lleva a que si pasa un umbral específico de pixeles se convierta toda la página a un tipo de dipositivo u otro.</p>
+			<p>Los navegadores han hecho hoy en día un trabajo excelente colocando algunas resoluciones de pantalla para móviles desde las herramientas de desarrollo, pero se han olvidado un poco del computador de escritorio, y ni hablar del hecho que en cualquier página web se pierde demasiado espacio, sobretodo en las que se usan platillas con CMS (ie: wordpress, shopify, etc). Ese "espacio perdido" es <strong>MUY</strong> importante y puede ser útil para mostrar información sin obligar al visitante a buscar exhaustivamente información que en algunos dipositivos se debe ocultar.</p>
 
 			<h3>Bien por el problema, ¿hay solución?</h3>
-			<p>La respuesta correcta es no, pero se puede minimizar el impacto. Si se toma cualquier plantilla hay que escribir mucho código CSS, si se desarrolla desde cero una página, hay que escribir mucho más código CSS.</p>
-			<p>Después de haber agrandado el problema, una posible solución es probar en distintas resoluciones de pantalla (o distintos dispositivos) lo que se está desarrollando, y allí es donde encontré una solución, por lo menos para escritorio (lo que no hay).</p>
-			<p>Si desde el navegador en el área de tamaños de pantalla queremos utilizar una resolución de escritorio, todo se va a ver perfecto a esa resolución (Ejemplo: 1336x768 ó HD) pero resulta que hay 2 cosas que se deben tener en cuenta a esta resolución</p>
-			<p>1. 1366 X 768 no es la resolución o espacio disponible (viewport) que me dá un navegador, como se vé en la tabla anterior</p>
-			<p>2. En 1920 X 1080 o FullHD puede no ser la resolución final, ya que para que se vea más claro (mas grande) Windows utiliza un escalamiento en casi cualquier pantalla de hasta 19 pulgadas (esto cubre la gran mayoria de portátiles).</p>
+			<p>La respuesta correcta es no, pero se puede minimizar el impacto. Si se toma cualquier plantilla hay que escribir o modificar el código CSS, y si se desarrolla desde cero una página, hay que escribir mucho más código CSS. igualmente el problema no radica allí, el problema radica que en resoluciones de pantalla iguales o superiores a HD (1366*768) todas las páginas pierden gran espacio a los lados, ese espacio en muchísimos sitios web es usuado para publicidad.</p>
+			<p>Después de haber agrandado el problema <a target="_blank" href="https://adblockplus.org">(con publicidad molesta)</a>, una posible solución es probar en distintas resoluciones de pantalla o en distintos dispositivos el diseño de un sitio, y allí es donde planteo una solución, por lo menos para computadores de escritorio y que no se encuentra facilmente.</p>
+			<p>Si vemos una página al utilizar una resolución de escritorio, todo se va a ver perfecto a esa resolución pero resulta que hay 2 cosas que se deben tener en cuenta a esta resolución. Utilicemos como ejemplo (1366 X 768)</p>
+			<p>1. 1366 X 768 o HD, no es la resolución o espacio disponible (viewport) que me dá un navegador como se vé en la tabla anterior, ya que el espacio realmente disponible depende de la barra de tareas, de la barra de dirección y de por ejemplo en Google Chrome, de si la barra de favoritos está activa o no.</p>
+			<p>2. En 1920 X 1080 o FullHD puede no ser la resolución final y real, ya que para que se pueda leer en dipositivos de pantalla pequeña como los portátiles, Windows utiliza un escalamiento entre 125% y 150%. Esto sucede en casi cualquier pantalla de hasta 19 pulgadas o en televisores, que generalmente están a cierta distancia y que sin escalamiento sería muy complicado de leer.</p>
 
 			<h3>¿Y entonces esa tabla que me dice?</h3>
-			<p>Solo dice cuales son los espacios en pixeles que algunos navegadores tienen disponible (viewport) y da un tamaño de pantalla para Powertoys.</p>
-			<p>Powertoys es una aplicación para Windows que tiene varias herramientas que ayudan y facilitan el uso de windows y una de ellas se llama Fancy Zone, allí es posible configurar divisiones en pixeles en la pantalla y poder arrastrar una ventana y colocarla en alguna de esas divisiones.</p>
+			<p>Solo dice cuales son los espacios en pixeles que algunos navegadores tienen disponible (viewport) y un tamaño de pantalla para utilizar con FancyZones de Powertoys.</p>
+			<p>Powertoys es una aplicación que contiene varias herramientas que ayudan y facilitan el uso de windows. Fancy Zone permite configurar divisiones (zones) medidas en pixeles para luego arrastrar una ventana y colocarla en alguna de esas divisiones.</p>
 
 			<h3>¿FancyZones de Powertoys cómo ayuda?</h3>
-			<p>Al dividir la pantalla se puede simular el espacio que un navegador tiene disponible en cada resolución o escalamiento (agrandamiento). Esto permite que al arrastrar el navegador a una division, tome el aspecto en resoluciones inferiores a la de la pantalla donde se desarrolla y se puedan emular las vistas (2k ó 2560 x 1440p es lo míminmo que recomiendo para desarrollo front-end).</p>
-			<p>Es mucho más facil que ir a las barras del navegador y activar la resolucón de algunos dispositivos, simplemente se presiona y manteniene <kbd>SHIFT</kbd> y se arrastra la ventana al tamaño o resolución donde se quiere probar.</p>
+			<p>La herramienta al permitir dividir la pantalla por pixeles puede simular el espacio que un navegador utlizaría en una resolucion de pantalla inferior a la de la pantalla actual; esto teniendo en cuenta que el escalameinto lo que hace es disminuir la cantidad de pixeles disponibles en una pantalla.</p>
+
+			<p>FancyZones permite que al arrastrar el navegador a una division, tome el aspecto que tendría en resoluciones inferiores a la de la pantalla donde se desarrolla y se puedan emular las vistas. Esto me ha llevado a pensar que para escribir el código de diseño de una página web la resolución mínima sea 2k ó 2560px X 1440px.</p>
+
+			<p>La aplicación es mucho más eficiente que ir a las herramientas de desarrollo del navegador y agregar o seleccionar una resolución, luego de confgirara las dicosiones de la pantalla, simplemente se presiona y manteniene <kbd>SHIFT</kbd> para luego arrastrar la ventana al tamaño o resolución donde se quiere probar.</p>
 
 			<h3>¿Alguna conclusión?</h3>
-			<p>No depende de mi, si no de cada desarrollador. Yo he optado por hacer media query para cada apartado de una página que lo requiera. En mi experiencia, esto se traduce en header, menú, footer y alguno que otro apartado de la página, pero el gran problema era saber como se vería en alguna resolución y acomodar el navegador me parecía un poco complejo, como digo, los navegadores tiene todo esto y tal vez más ya que también permiten el escalado de pantalla, pero no es lo mismo que probarlo en una simulación más real.</p>
-			<p>Todo esto, me lleva a decir que almenos la tabla es últil, y que tal vez todo este espacio escrito no lo sea, tampoco voy a justuficar el haberlo escrito, quería hacerlo y fué escrito. 😊</p>
-			<p>Ya que no paro... Estaría bien agregar las resoluciones inferiores a la resolución de pantalla de tu dispositivo en los disposivios emulados de las herramientas de desarrollador. Adicionalmente, hacer las divisiones está de lujo para colcoar ventanas en varios lados y trabajar con una ventana junto a la otra. Eso es muy productivo!</p>
+			<p>No depende de mi, si no de cada desarrollador. Yo he optado por hacer media querys para cada apartado de una página que lo requiera. En mi experiencia, esto se traduce en varios media query para header, otros más para menús, aun más para footer y otros muy distintos para alguno que otro apartado de la página. Antes era un problema saber como se vería en alguna resolución y acomodar el navegador me parecía un poco complejo, como digo, los navegadores tiene todo esto y tal vez más ya que también permiten el escalado de pantalla, pero no es lo mismo que visualizar un proyecto en una tamaño más real.</p>
+			<p>Todo esto me lleva a pensar que almenos la tabla es últil, y que tal vez todo este espacio escrito no lo sea, tampoco voy a justuficar el haberlo escrito, quería hacerlo y lo escribí. 😊</p>
+			<p>Y ya que estamos... Creo que sería una muy buena opción agregar las resoluciones de pantalla inferiores en los disposivios emulados de las herramientas de desarrollador. La siguiente tabla muestra lo tamaños disponibles para el navegador en distintas resoluciones y no se debe tomar como divisiones para Fancy Zones.</p>
 			<div id="custom-sizes">
 				<table class="data pers">
 					<thead>
@@ -607,6 +641,8 @@
 					</tfoot>
 				</table>
 			</div>
+			<h3>Ultima recomendación</h3>
+			<p>Hacer las divisiones en FancyZones sirve para colocar ventanas a un lado y otro de la pantalla, en la parte superior o inferior o practicamente utilizr varias divisiones para repartir ventanas, y de este modo trabajar teniendo ventanas a una junto a la otra. ¡Eso es muy productivo y eficiente!.</p>
 		</article>
 	</section>
 	<script>
@@ -644,9 +680,12 @@
 			set_sizes('screen', window.screen.width, window.screen.height);
 			set_sizes('nav', div_max_width.clientWidth, div_max_height.clientHeight);
 			set_sizes('css_rec', div_max_width.clientWidth - (font_size * 2), div_max_height.clientHeight);
+			const dpr = document.querySelector("#screen-dpr .size");
+			dpr.textContent = window.devicePixelRatio;
+
 			rec_box.style = max_width;
-			/* I commented next lines to talk about error on "Datos a tener en cuenta" titleo
-				on mobile view and the padding top
+			/* I commented next lines to talk about error on "Datos a tener en cuenta" title
+				on mobile view and the padding top "jump" away from colored box
 
 				The error happens because the colored box is not updated when the dynamic height or width occurs,
 				Just the width is updated.
@@ -662,6 +701,9 @@
 	</script>
 	<footer>
 		<p>Creado por ChyBeat &copy; 2024. GNU-GPL License</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<hr>
 		<div id="gpl-license" class="text-width">
 			<p>This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 			</p>
